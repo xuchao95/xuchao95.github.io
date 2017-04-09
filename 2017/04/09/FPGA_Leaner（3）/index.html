@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="xuchao95.github。io">
-  <title>Archives: 2017/4 | 等风来</title>
+  <title>FPGA（3） | 等风来</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="菜鸟工程师的成长之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="等风来">
-<meta property="og:url" content="xuchao95.github。io/archives/2017/04/index.html">
+  <meta name="description" content="现在需要新建一个VHDL子模块，利用已经得到的频率计数来计算最终的结果。子模块传入数据类型为std_vector（31 downto 0），但标准逻辑矢量不能用于乘除运算，需要转化为整数来运算，但在VHDL语句中整数的上限为2147483647，且在除法运算中容易丢失精度，所以我想将其转化为实数来计算，采用网上的方法，直接使用赋值法来强制转换类型，但仿真结果却出现了错误，转化为结果恒为1,。所以说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FPGA（3）">
+<meta property="og:url" content="xuchao95.github。io/2017/04/09/FPGA_Leaner（3）/index.html">
 <meta property="og:site_name" content="等风来">
-<meta property="og:description" content="菜鸟工程师的成长之路">
+<meta property="og:description" content="现在需要新建一个VHDL子模块，利用已经得到的频率计数来计算最终的结果。子模块传入数据类型为std_vector（31 downto 0），但标准逻辑矢量不能用于乘除运算，需要转化为整数来运算，但在VHDL语句中整数的上限为2147483647，且在除法运算中容易丢失精度，所以我想将其转化为实数来计算，采用网上的方法，直接使用赋值法来强制转换类型，但仿真结果却出现了错误，转化为结果恒为1,。所以说">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1960386-9da7ab4252dc8def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-04-09T12:32:25.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="等风来">
-<meta name="twitter:description" content="菜鸟工程师的成长之路">
+<meta name="twitter:title" content="FPGA（3）">
+<meta name="twitter:description" content="现在需要新建一个VHDL子模块，利用已经得到的频率计数来计算最终的结果。子模块传入数据类型为std_vector（31 downto 0），但标准逻辑矢量不能用于乘除运算，需要转化为整数来运算，但在VHDL语句中整数的上限为2147483647，且在除法运算中容易丢失精度，所以我想将其转化为实数来计算，采用网上的方法，直接使用赋值法来强制转换类型，但仿真结果却出现了错误，转化为结果恒为1,。所以说">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1960386-9da7ab4252dc8def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="等风来" type="application/atom+xml">
   
@@ -164,49 +167,136 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-FPGA_Leaner（3）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/FPGA_Leaner（3）/" class="archive-article-date">
-  	<time datetime="2017-04-09T12:15:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/FPGA_Leaner（3）/">FPGA（3）</a>
+    <h1 class="article-title" itemprop="name">
+      FPGA（3）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/04/09/FPGA_Leaner（3）/" class="archive-article-date">
+  	<time datetime="2017-04-09T12:15:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在需要新建一个VHDL子模块，利用已经得到的频率计数来计算最终的结果。子模块传入数据类型为std_vector（31 downto 0），但标准逻辑矢量不能用于乘除运算，需要转化为整数来运算，但在VHDL语句中整数的上限为2147483647，且在除法运算中容易丢失精度，所以我想将其转化为实数来计算，采用网上的方法，直接使用赋值法来强制转换类型，但仿真结果却出现了错误，转化为结果恒为1,。所以说，到底应该怎么转化，或者说VHDL语言不支持直接浮点运算？<br>主要程序：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">     library ieee;</span><br><span class="line">use ieee.std_logic_1164.all;</span><br><span class="line">use ieee.std_logic_unsigned.all;</span><br><span class="line">use ieee.std_logic_arith.all;</span><br><span class="line"></span><br><span class="line">entity calculator is</span><br><span class="line">port( </span><br><span class="line">       <span class="symbol">en:</span><span class="keyword">in</span> std_logic;</span><br><span class="line">      <span class="symbol">bzq_in:</span><span class="keyword">in</span> std_logic_vector(<span class="number">31</span> downto <span class="number">0</span>);    --标准频率计数</span><br><span class="line">	   <span class="symbol">tsq_in:</span><span class="keyword">in</span> std_logic_vector(<span class="number">31</span> downto <span class="number">0</span>);    --待测频率计数</span><br><span class="line">	   <span class="symbol">mkh_in:</span><span class="keyword">in</span> std_logic_vector(<span class="number">31</span> downto <span class="number">0</span>);     --高电平计数</span><br><span class="line">	   <span class="symbol">mkl_in:</span><span class="keyword">in</span> std_logic_vector(<span class="number">31</span> downto <span class="number">0</span>);     --低电平计数</span><br><span class="line">		<span class="symbol">line1:</span>out std_logic_vector(<span class="number">127</span> downto <span class="number">0</span>);   --lcd1602的第一行</span><br><span class="line">		<span class="symbol">line2:</span>out std_logic_vector(<span class="number">127</span> downto <span class="number">0</span>));  --LCD1602的第二行</span><br><span class="line">		<span class="keyword">end</span> calculator;</span><br><span class="line">		</span><br><span class="line">	architecture behav of calculator is</span><br><span class="line">	       </span><br><span class="line">		signal fx,<span class="symbol">duty_cycle:</span>integer range <span class="number">0</span> to <span class="number">200000000</span>;</span><br><span class="line">	   signal bzq_temp,tsq_temp,mkh_temp,<span class="symbol">mkl_temp:</span>integer range <span class="number">1</span> to <span class="number">2147483647</span>;--<span class="number">4294967295</span>;</span><br><span class="line">		TYPE list IS ARRAY (<span class="number">0</span> TO <span class="number">8</span>)OF integer range <span class="number">0</span> to <span class="number">9</span>;</span><br><span class="line">		signal list1,<span class="symbol">list2:</span>list;</span><br><span class="line">		TYPE listt IS ARRAY (<span class="number">0</span> TO <span class="number">8</span>)OF std_logic_vector(<span class="number">7</span> downto <span class="number">0</span>);</span><br><span class="line">		signal list3,<span class="symbol">list4:</span>listt;</span><br><span class="line">	   <span class="keyword">begin</span></span><br><span class="line">		</span><br><span class="line">process(en)</span><br><span class="line">     variable <span class="symbol">temp:</span><span class="symbol">integer:</span>=<span class="number">100000000</span>;  </span><br><span class="line">	  variable <span class="symbol">temp2:</span><span class="symbol">integer:</span>=<span class="number">10</span>; </span><br><span class="line">	  variable f1,f2,f3,f4,fx_temp,<span class="symbol">duty_cycle_temp:</span>real;</span><br><span class="line">	  variable x1,<span class="symbol">x2:</span>integer range <span class="number">0</span> to <span class="number">200000000</span>;</span><br><span class="line">	  variable <span class="symbol">fs:</span><span class="symbol">real:</span>=<span class="number">100000000.0</span>; </span><br><span class="line">	  variable <span class="symbol">f_10:</span><span class="symbol">real:</span>=<span class="number">10.0</span>; </span><br><span class="line">     <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> en<span class="string">'event and en='</span><span class="number">0</span><span class="string">' then</span><br><span class="line">		bzq_temp&lt;=conv_integer(bzq_in);</span><br><span class="line">		tsq_temp&lt;=conv_integer(tsq_in);</span><br><span class="line">		mkh_temp&lt;=conv_integer(mkh_in);</span><br><span class="line">		mkl_temp&lt;=conv_integer(mkl_in);</span><br><span class="line">		</span><br><span class="line">		f1:=real(bzq_temp);</span><br><span class="line">		f2:=real(tsq_temp);</span><br><span class="line">		f3:=real(mkh_temp);</span><br><span class="line">		f4:=real(mkl_temp);</span><br><span class="line">		</span><br><span class="line">		fx_temp:=fs*(f2/f1);        --计算待测频率</span><br><span class="line">		duty_cycle_temp:=(f_10*f3)/(f3+f4);  --计算占空比</span><br><span class="line">		</span><br><span class="line">		fx&lt;=integer(fx_temp);</span><br><span class="line">		duty_cycle&lt;=integer(duty_cycle_temp);</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1960386-9da7ab4252dc8def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
 
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:xuchao95.github。io/2017/04/09/FPGA_Leaner（3）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/25/基于FPGA的m序列简易数字信号分析仪/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于FPGA的m序列简易数字信号分析仪</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="FPGA_Leaner（3）" data-title="FPGA（3）" data-url="xuchao95.github。io/2017/04/09/FPGA_Leaner（3）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"litten-hexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -229,8 +319,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
